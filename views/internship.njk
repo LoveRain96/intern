@@ -1,0 +1,65 @@
+<html>
+<head>
+    <title>INTERNSHIP</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<div class="col-md-8 col-md-offset-2">
+    <div class="container-fluid">
+        <div class="page-header"><h1 class="text-center">List Internship</h1></div>
+        <div class="row">
+            <div class="col-md-10">
+                <input type="text" class="form-control" id="inputKeyword" placeholder="Keyword">
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-success btn-block">
+                    <i class="glyphicon glyphicon-search"></i>
+                </button>
+            </div>
+        </div>
+        <hr>
+        <button class="btn btn-default" onClick="window.location.href='/course/add' ">Add</button>
+        <hr>
+        <ul class="list-group" id="listCourses">
+
+        </ul>
+        <!--<form id="Company">-->
+        <!--<ul class="list-group">-->
+        <!--{% for company in companies %}-->
+        <!--<li class="list-group-item">-->
+        <!--<a href="/company/{{company.getId()}}">{{company.getName()}}</a>-->
+        <!--</li>-->
+        <!--{% endfor %}-->
+        <!--</ul>-->
+        <!--</form>-->
+    </div>
+</div>
+
+</body>
+
+<script id="Template" type="text/html">
+    <a class="list-group-item" href="/course/:id:">:internshipName:</a>
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('#inputKeyword').keyup(function () {
+            $.get('/companies/search-basic', {
+                keyword: $('#inputKeyword').val(),
+            }).then(render)
+        });
+
+        function render(internships) {
+            var template = $('#Template').html();
+            var resultsHtml = internships.map(function (internship) {
+                return template.replace(':internshipName:', internship.name)
+                    .replace(':id:', internship.id)
+            }).join('');
+            $('#listCourses').html(resultsHtml);
+        }
+        $.get('/course/internships').then(render);
+    });
+
+</script>
+</html>

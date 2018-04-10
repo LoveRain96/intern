@@ -1,0 +1,3 @@
+
+
+internshipRegisterationService.registerTo(me, internShip);

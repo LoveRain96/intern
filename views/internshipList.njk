@@ -1,0 +1,26 @@
+<html>
+<head>
+    <title>internshipList</title>
+</head>
+<body>
+<ul>
+    <h1>Lecturer</h1>
+    <li><label>name : </label>{{ internshipList.lecturer.getName() }}</li>
+    <li><label>gender : </label>{{ internshipList.lecturer.getSex() }}</li>
+    <li><label>address : </label>{{ internshipList.lecturer.getAddress() }}</li>
+    <li><label>phone : </label>{{ internshipList.lecturer.getContact().getPhone() }}</li>
+    <li><label>email : </label>{{ internshipList.lecturer.getContact().getEmail() }}</li>
+
+    <h1>Intern</h1>
+    {%for intern in internshipList.interns %}
+    <li><label>name : </label>{{ intern.getName() }}</li>
+    <li><label>gender : </label>{{ intern.getSex() }}</li>
+    <li><label>address : </label>{{ intern.getAddress() }}</li>
+    <li><label>phone : </label>{{ intern.getContact().getPhone() }}</li>
+    <li><label>email : </label>{{ intern.getContact().getEmail() }}</li>
+    {% endfor %}
+
+    <button id="registration">registration</button>
+</ul>
+</body>
+</html>

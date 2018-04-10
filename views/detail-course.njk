@@ -1,0 +1,72 @@
+<html>
+<head>
+    <title>Detail</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script>
+        $(document).ready( () => {
+            $("#save").click( () =>{
+                $.post('/company/:id', {
+                    id : $('#id').val(),
+                    name: $('#name').val(),
+                    phone: $('#phone').val(),
+                    email: $('#email').val(),
+                    address: $('#address').val()
+                }).then(() => {
+                    alert('success');
+                })
+
+            });
+        })
+    </script>
+</head>
+<body>
+    <section>
+        <div class="container-fluid">
+            <div class="page-header"><h1 class="text-center">{{course.getName()}}</h1></div>
+            <ul>
+                <li> <a href="/">Home</a></li>
+            </ul>
+            <div class="col-md-6 col-md-offset-3">
+                <form action="/course/{{course.getId()}}" method="post">
+                    <div class="form-group col-md-12">
+                        <label>Name</label>
+                        <br>
+                        <input class="form-control" name="name" id="name" value="{{course.getName()}}">
+                        <input type="text" hidden id="id" name="id" value="{{course.getId()}}">
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label>StartDate</label>
+                        <br>
+                        <input class="form-control" type="date" name="startDate" id="startDate" value="{{course.getDuration().getStartDate()}}">
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label>EndDate</label>
+                        <br>
+                        <input class="form-control" type="date" name="endDate" id="endDate" value="{{course.getDuration().getEndDate()}}">
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label>Status</label>
+                        <br>
+                        <input class="form-control" type="text" disabled name="status" id="status" value="{{course.getStatus()}}">
+                    </div>
+                    <div class="form-group col-md-12">
+                        <button id="save" class="btn btn-primary btn-block">
+                            <i class=" glyphicon glyphicon-floppy-save"></i>
+                            <span class="hidden-sm hidden-xs">SAVE</span>
+                        </button>
+                    </div>
+                </form>
+                <form action="/delete/course/{{course.getId()}}" method="get">
+                    <div class="form-group col-md-12">
+                        <button class="btn btn-primary btn-block">
+                            <i class=" glyphicon glyphicon-trash"></i>
+                            <span class="hidden-sm hidden-xs">DELETE</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

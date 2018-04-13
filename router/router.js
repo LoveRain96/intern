@@ -9,18 +9,15 @@ const CompanyController             = require('../http/controller/company-contro
 const CourseController              = require('../http/controller/course-controller');
 const InternshipController          = require('../http/controller/internship-controller');
 const internshipList                = require('../http/controller/internship-list-controller');
-const courseRequest                 = require('../http/middleware/course-request');
-const isCourse                      = require('../http/middleware/is-course');
-const managerRequest                = require('../http/middleware/company-manager-request');
-const companyRequest                = require('../http/middleware/company-request');
+const checkData                     = require('../http/middleware');
 
-let loginController          = new LoginController;
-let lecturerController       = new LecturerController();
-let internshipController     = new InternshipController();
-let courseController         = new CourseController();
-let companyController        = new CompanyController;
-let companyManagerController = new CompanyManagerController;
-let internController         = new InternController;
+let loginController                 = new LoginController;
+let lecturerController              = new LecturerController();
+let internshipController            = new InternshipController();
+let courseController                = new CourseController();
+let companyController               = new CompanyController;
+let companyManagerController        = new CompanyManagerController;
+let internController                = new InternController;
 
 
 
@@ -54,8 +51,8 @@ router.get('/company', (req, res) => {
 router.get('/companies', companyController.all);
 router.get('/detail-company/:id', companyController.get);
 router.get('/companies/search-basic', companyController.searchByName);
-router.post('/company', companyRequest, companyController.create);
-router.post('/company/:id', companyRequest, companyController.update);
+router.post('/company', checkData.companyRequest, companyController.create);
+router.post('/company/:id', checkData.companyRequest, companyController.update);
 router.get('/company/:id', companyController.remove);
 
 
@@ -68,9 +65,9 @@ router.get('/manager/:id', companyManagerController.get);
 
 router.get('/manager/search-basic', companyManagerController.searchByName);
 
-router.post('/manager', managerRequest, companyManagerController.create);
+router.post('/manager', checkData.managerRequest, companyManagerController.create);
 
-router.put('/manager/:id', managerRequest, companyManagerController.update);
+router.put('/manager/:id', checkData.managerRequest, companyManagerController.update);
 
 router.delete('/manager/:id', companyManagerController.remove);
 
@@ -86,9 +83,9 @@ router.get('/courses', courseController.all);
 
 router.get('/course/:id', courseController.get);
 
-router.post('/course', courseRequest, courseController.create);
+router.post('/course', checkData.courseRequest, courseController.create);
 
-router.post('/course/:id', courseRequest, courseController.update);
+router.post('/course/:id', checkData.courseRequest, courseController.update);
 
 router.get('/delete/course/:id', courseController.remove);
 
@@ -108,11 +105,11 @@ router.get('/course/internship/add', function (request, response ) {
     response.render('addInternship.njk');
 });
 
-router.get('/course/:idCourse/internship',isCourse, internshipController.searchByCourse);
+router.get('/course/:idCourse/internship',checkData.isCourse, internshipController.searchByCourse);
 
-router.post('/course/:idCourse/internship',isCourse, internshipController.create);
+router.post('/course/:idCourse/internship',checkData.isCourse, internshipController.create);
 
-router.put('/course/:idCourse/internship/:id',isCourse, internshipController.update);
+router.put('/course/:idCourse/internship/:id',checkData.isCourse, internshipController.update);
 
 
 router.delete('/course/internship/:id', internshipController.remove);

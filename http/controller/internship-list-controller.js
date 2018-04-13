@@ -1,4 +1,4 @@
-const InternshipList = require('../../src/internship/intern-list');
+const InternshipList = require('../../src/intern-list/intern-list-factory');
 
 exports.getListPENDING = function (request, response, next) {
     let lecturer = request.app.get('lecturer.repository').get(request.params.id);

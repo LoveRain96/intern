@@ -1,6 +1,15 @@
 class CompanyManager {
-    constructor(name) {
+    constructor(company, name) {
         this.name = name;
+        this.company = company;
+    }
+
+    /**
+     *
+     * @return {Company|*}
+     */
+    getCompany() {
+        return this.company;
     }
     /**
      *
@@ -70,6 +79,21 @@ class CompanyManager {
      */
     getAddress() {
         return this.address;
+    }
+
+    /**
+     *
+     * @param {string}gender
+     */
+    setGender(gender) {
+        this.gender = gender;
+    }
+    /**
+     *
+     * @return {string|*}
+     */
+    getGender() {
+        return this.gender;
     }
 }
 

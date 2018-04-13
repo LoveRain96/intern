@@ -1,12 +1,12 @@
 class InternList {
 
-    constructor(interns = [],lecturer) {
-        this.interns = interns;
-        this.lecturer = lecturer;
+    constructor(app) {
+        this.app =app;
     }
 
-    add(intern) {
-        this.interns.push(intern)
+    getIntern(id) {
+        let provider = this.app.get('internshipRegistration.provider');
+        return provider.getCONFIRMED(id);
     }
 
 }

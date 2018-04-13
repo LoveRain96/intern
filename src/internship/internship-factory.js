@@ -1,6 +1,11 @@
-const Internship = require('../../src/internship/internship');
-const CompanyFactory = require('../../src/company/company-factory');
+const Internship            = require('../internship/internship');
+const CompanyFactory        = require('../company/company-factory');
+const InternList            = require('./intern-list');
+
 class InternshipFactory {
+    constructor(app) {
+        this.app = app;
+    }
     /**
      *
      * @param raw
@@ -8,17 +13,13 @@ class InternshipFactory {
      * @return {Internship}
      */
     makeFromDB(raw,course) {
-        let company = new CompanyFactory();
-        let internship = new Internship(company.makeFromDB(raw));
+        let company = new CompanyFactory().makeFromDB(raw);
+        let internList = new InternList().getIntern(raw.id);
+        let internship = new Internship(company, internList);
         internship.setId(raw.internship_id);
         internship.setCourse(course);
         return internship;
     }
-    makeFrom(raw) {
-        let company = new CompanyFactory();
-        let internship = new Internship(company.makeFromDB(raw));
-        internship.setId(raw.internship_id);
-        return internship;
-    }
 }
+
 module.exports = InternshipFactory;

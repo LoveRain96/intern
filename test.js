@@ -23,14 +23,14 @@ internshipRegistrationService.send(internshipRegistration).then(()=>{
 internshipRegistrationService.confirm(1).then(()=>{
     console.log('success')
 });*//*
-const InternshipRepository = require('./src/internship/internship-repository');
-const InternshipFactory = require('./src/internship/internship-factory');
+const InternshipRepository = require('./src/search-service/search-service-repository');
+const InternshipFactory = require('./src/search-service/search-service-factory');
 let internshipRepository = new InternshipRepository(knex, new InternshipFactory());
 
 internshipRepository.searchByCourse(1).then(console.log);*/
 /*
 
-const InternshipRegistration = require('./src/internship-registration/internship-registration-provider');
+const InternshipRegistration = require('./src/search-service-registration/search-service-registration-provider');
 const InternFactory = require('./src/intern/intern-factory');
 
 let internList = new  InternshipRegistration(knex, new InternFactory());

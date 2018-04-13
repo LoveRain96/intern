@@ -31,7 +31,7 @@ router.get('/', function (req, res) {
 });
 
 
-router.get('/internship', (req, res) => {
+router.get('/search-service', (req, res) => {
     res.render('internship.njk')
 });
 
@@ -59,7 +59,7 @@ router.get('/company/:id', companyController.remove);
 router.get('/manager/add', function (request, response) {
     response.render('addManager.njk')
 });
-router.get('/manager', companyManagerController.all);
+router.get('/managers', companyManagerController.all);
 
 router.get('/manager/:id', companyManagerController.get);
 
@@ -91,9 +91,9 @@ router.get('/delete/course/:id', courseController.remove);
 
 
 
-const UndeletedSearch      = require('../src/internship/internship/undeleted-search-condition');
+const UndeletedSearch      = require('../src/internship/search-service/undeleted-search-condition');
 
-router.get('/internship', function (req, res) {
+router.get('/search-service', function (req, res) {
     res.render('internship.njk')
 });
 router.get('/internships', (req, res, next) => {
@@ -101,7 +101,7 @@ router.get('/internships', (req, res, next) => {
     next();
 }, internshipController.all);
 
-router.get('/course/internship/add', function (request, response ) {
+router.get('/course/search-service/add', function (request, response ) {
     response.render('addInternship.njk');
 });
 
@@ -112,11 +112,11 @@ router.post('/course/:idCourse/internship',checkData.isCourse, internshipControl
 router.put('/course/:idCourse/internship/:id',checkData.isCourse, internshipController.update);
 
 
-router.delete('/course/internship/:id', internshipController.remove);
+router.delete('/course/search-service/:id', internshipController.remove);
 
-router.get('/course/internship/confirmed/:id', internshipList.getListCONFIRMED);
+router.get('/course/search-service/confirmed/:id', internshipList.getListCONFIRMED);
 
-router.get('/course/internship/pending/:id', internshipList.getListPENDING);
+router.get('/course/search-service/pending/:id', internshipList.getListPENDING);
 
 router.post('/registration/send', registration.registerInternShip);
 

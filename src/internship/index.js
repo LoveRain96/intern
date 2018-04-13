@@ -1,6 +1,6 @@
 const InternshipFactory    = require('./internship-factory');
 const InternshipRepository = require('./internship-repository');
-const InternshipSearcher = require('./internship/searcher');
+const InternshipSearcher = require('./search-service/searcher');
 
 module.exports = function (app) {
     let connection = app.get('databaseConnection');

@@ -1,9 +1,11 @@
 class Internship {
     /**
      * @param {Company} company
+     * @param {InternList} internList
      */
-    constructor(company) {
+    constructor(company, internList) {
         this.company  = company;
+        this.internList = internList;
     }
 
     /**
@@ -37,7 +39,7 @@ class Internship {
      * @param {InternshipList} internList
      */
     setInternList(internList) {
-        this.internList = internList;
+
     }
 
     /**

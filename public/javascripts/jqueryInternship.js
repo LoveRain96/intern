@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $('#addInternship').click(function () {
-        $.post('/internship').then(()=>{
+        $.post('/search-service').then(()=>{
             alert('success');
             $('#startDateInternship').val('');
             $('#endDateInternship').val('');

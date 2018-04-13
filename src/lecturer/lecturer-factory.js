@@ -8,11 +8,10 @@ class lecturerFactory {
      * @return {Lecturer}
      */
     makeFromDB(raw) {
-        let lecturer = new Lecturer();
+        let lecturer = new Lecturer(raw.code);
         let contact = new Contact();
-        lecturer.setId(raw.id);
         lecturer.setName(raw.name);
-        lecturer.setSex(raw.sex);
+        lecturer.setGender(raw.gender);
         lecturer.setAddress(raw.address);
         contact.setPhone(raw.phone);
         contact.setEmail(raw.email);

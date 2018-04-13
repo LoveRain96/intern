@@ -29,9 +29,6 @@ class InternshipRepository {
             course_id : internship.getCourse().getId(),
             company_id : internship.getCompany().getId(),
             status : status.OPEN
-        }).then(internship_id => {
-            internship.getId(internship_id);
-            return internship;
         })
     }
     update(internship) {

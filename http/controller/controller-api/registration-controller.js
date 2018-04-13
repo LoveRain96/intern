@@ -1,4 +1,4 @@
-const InternshipRegistration = require('../../src/internship-registration/internship-registration');
+const InternshipRegistration = require('../../src/search-service-registration/search-service-registration');
 
 exports.registerInternShip = function (request, response) {
     let registration = new InternshipRegistration(request.user, request.internship);

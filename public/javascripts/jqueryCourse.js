@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $('#course').click(function () {
         let id = $('#course').val();
-        $.get("/course/internship/".concat(id)).then(template)
+        $.get("/course/search-service/".concat(id)).then(template)
     })
 });
 function template(internships) {

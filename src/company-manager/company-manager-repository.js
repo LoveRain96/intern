@@ -16,16 +16,14 @@ class CompanyManagerRepository {
         return this.connection('companyManagers')
             .where({deleted_at : null}).then(results => results.map(this.companyManagerFactory.makeFromDB))
     }
-    create(company) {
+    create(companyManager) {
         return this.connection('companyManagers').insert({
-            name : company.getName(),
-            gender : company.getGender(),
-            phone : company.getContact().getPhone(),
-            email : company.getContact().getEmail(),
-            address : company.getAddress()
-        }).then(companyId => {
-            company.setId(companyId);
-            return company;
+            name : companyManager.getName(),
+            gender : companyManager.getGender(),
+            company_id: companyManager.getCompany().getId(),
+            phone : companyManager.getContact().getPhone(),
+            email : companyManager.getContact().getEmail(),
+            address : companyManager.getAddress()
         })
     }
     update(company) {

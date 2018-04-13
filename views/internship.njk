@@ -29,9 +29,9 @@
             </div>
         </form>
         <form action="">
+            <div class="page-header"><h1 class="text-center">LIST COMPANY IN INTERNSHIP</h1></div>
             <ul class="list-group">
             {% for internship in internshipList.internship %}
-                <div class="page-header"><h1 class="text-center">{{internship.company.getName()}}</h1></div>
                   <li class="list-group-item">
                 <a href="/detail-company/{{internship.company.getId()}}">{{internship.company.getName()}}</a>
                     </li>

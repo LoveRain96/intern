@@ -18,13 +18,17 @@ class Searcher {
         sqlQuery = this.connection
             .select('courses.id', 'courses.name', 'courses.startDate', 'courses.endDate', 'courses.status',
                 'companies.id', 'companies.name', 'companies.phone', 'companies.email', 'companies.address',
-                'internships.deadline')
+                'lecturers.code', 'lecturers.name', 'lecturers.gender', 'lecturers.phone', 'lecturers.email', 'lecturers.address'
+                ,'internships.deadline')
             .from('internships')
             .leftJoin('courses', function () {
                 this.on('courses.id', '=', 'internships.course_id' )
             })
             .leftJoin('companies', function () {
                 this.on('companies.id', '=', 'internships.company_id')
+            })
+            .leftJoin('lecturers', function () {
+                this.on('companies.lecturer_code', '=', 'lecturers.code')
             });
         condition.describe(sqlQuery);
         return sqlQuery.then(results => {

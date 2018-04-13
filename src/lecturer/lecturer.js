@@ -1,33 +1,22 @@
 class Lecturer {
-    /**
-     *
-     * @param {id} id
-     */
-    setId(id) {
-        this.id = id;
-    }
-    /**
-     *
-     * @return {string}
-     */
-    getId() {
-        return this.id;
+    constructor(code) {
+        this.code= code
     }
 
-    /**
-     *
-     * @param {string} sex
-     */
-    setSex(sex) {
-        this.sex = sex;
+    getCode(){
+        return this.code
+    }
+
+    setGender(gender) {
+        this.gender = gender;
     }
 
     /**
      *
      * @return {string}
      */
-    getSex() {
-        return this.sex;
+    getGender() {
+        return this.gender;
     }
     /**
      *

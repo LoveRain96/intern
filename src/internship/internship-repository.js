@@ -41,6 +41,8 @@ class InternshipRepository {
             course_id : internship.getCourse().getId(),
             company_id : internship.getCompany().getId(),
             status : internship.getStatus()
+        }).where({
+            id: internship.getId()
         })
     }
     remove(internship_id) {
@@ -48,19 +50,5 @@ class InternshipRepository {
             deleted_at : new Date().toLocaleDateString()
         }).where('id', internship_id)
     }
-    all() {
-        return this.connection
-            .select( 'companies.id', 'companies.name', 'companies.phone', 'companies.email', 'companies.address',
-                'internships.id as internship_id')
-            .from('internships')
-            .leftJoin('companies', function () {
-                this.on('companies.id', '=', 'internships.company_id')
-            }).where('internships.id', 2)
-            .then(results => {
-                console.log(results);
-                results.map(this.internshipFactory.makeFrom)
-            })
-    }
-
 }
 module.exports = InternshipRepository;

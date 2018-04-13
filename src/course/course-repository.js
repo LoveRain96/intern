@@ -15,7 +15,7 @@ class CourseRepository {
     get(id) {
         return this.connection('courses')
             .where({id : id, deleted_at : null})
-            .then(result=> this.courseFactory.makeFromDB(result[0]))
+                .then(result=> this.courseFactory.makeFromDB(result[0]))
     }
 
     create(course) {

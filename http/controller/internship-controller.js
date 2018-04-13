@@ -5,12 +5,12 @@ class InternshipController {
     searchByCourse(request, response, next) {
         request.app.get('internship.repository').searchByCourse(request.course).then(results => {
             let internshipList = new InternshipList(results);
-            response.json(internshipList);
+            response.render('internship.njk', {internshipList: internshipList});
         }).catch(next);
     }
     all(request, response, next) {
-        request.app.get('internship.repository').all().then(results => {
-            response.json(results);
+        request.app.get('internship.searcher').search(request.condition).then(foundInternship => {
+            response.json(foundInternship);
         }).catch(next);
     }
     get(request, response, next) {

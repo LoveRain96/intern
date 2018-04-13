@@ -5,61 +5,39 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
-<div class="col-md-8 col-md-offset-2">
-    <div class="container-fluid">
-        <div class="page-header"><h1 class="text-center">List Internship</h1></div>
-        <div class="row">
-            <div class="col-md-10">
-                <input type="text" class="form-control" id="inputKeyword" placeholder="Keyword">
+    <div class="col-md-6 col-md-offset-3">
+        <div class="page-header"><h1 class="text-center">{{internshipList.internship[0].course.getName()}}</h1></div>
+        <form action="#" method="post">
+            <div class="form-group col-md-12">
+                <label>Name</label>
+                <label class="form-control">{{internshipList.internship[0].course.getName()}}</label>
             </div>
-            <div class="col-md-2">
-                <button class="btn btn-success btn-block">
-                    <i class="glyphicon glyphicon-search"></i>
-                </button>
+            <div class="form-group col-md-12">
+                <label>StartDate</label>
+                <br>
+                <label class="form-control">{{internshipList.internship[0].course.getDuration().getStartDate()}}</label>
             </div>
-        </div>
-        <hr>
-        <button class="btn btn-default" onClick="window.location.href='/course/add' ">Add</button>
-        <hr>
-        <ul class="list-group" id="listCourses">
-
-        </ul>
-        <!--<form id="Company">-->
-        <!--<ul class="list-group">-->
-        <!--{% for company in companies %}-->
-        <!--<li class="list-group-item">-->
-        <!--<a href="/company/{{company.getId()}}">{{company.getName()}}</a>-->
-        <!--</li>-->
-        <!--{% endfor %}-->
-        <!--</ul>-->
-        <!--</form>-->
+            <div class="form-group col-md-12">
+                <label>EndDate</label>
+                <br>
+                <label class="form-control">{{internshipList.internship[0].course.getDuration().getEndDate()}}</label>
+            </div>
+            <div class="form-group col-md-12">
+                <label>Status</label>
+                <br>
+                <label class="form-control">{{internshipList.internship[0].course.getStatus()}}</label>
+            </div>
+        </form>
+        <form action="">
+            <ul class="list-group">
+            {% for internship in internshipList.internship %}
+                <div class="page-header"><h1 class="text-center">{{internship.company.getName()}}</h1></div>
+                  <li class="list-group-item">
+                <a href="/detail-company/{{internship.company.getId()}}">{{internship.company.getName()}}</a>
+                    </li>
+            {% endfor %}
+            </ul>
+        </form>
     </div>
-</div>
-
 </body>
-
-<script id="Template" type="text/html">
-    <a class="list-group-item" href="/course/:id:">:internshipName:</a>
-</script>
-
-<script>
-    $(document).ready(function () {
-        $('#inputKeyword').keyup(function () {
-            $.get('/companies/search-basic', {
-                keyword: $('#inputKeyword').val(),
-            }).then(render)
-        });
-
-        function render(internships) {
-            var template = $('#Template').html();
-            var resultsHtml = internships.map(function (internship) {
-                return template.replace(':internshipName:', internship.name)
-                    .replace(':id:', internship.id)
-            }).join('');
-            $('#listCourses').html(resultsHtml);
-        }
-        $.get('/course/internships').then(render);
-    });
-
-</script>
 </html>

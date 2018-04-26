@@ -5,10 +5,10 @@ class InternshipList {
     }
 
     add(internship) {
-        this.internship.push(internship)
+
     }
     getList() {
-        return this.internship;
+
     }
 
 }

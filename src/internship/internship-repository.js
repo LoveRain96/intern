@@ -16,7 +16,7 @@ class InternshipRepository {
                 'internships.id as internship_id')
             .from('internships')
             .leftJoin('companies', function () {
-                this.on('companies.id', '=', 'internships.company_id')
+                    this.on('companies.id', '=', 'internships.company_id')
             }).where('internships.course_id', course.getId())
             .then(results => results.map(internship=>
                     this.internshipFactory.makeFromDB(internship, course)
@@ -28,6 +28,7 @@ class InternshipRepository {
             endDate : internship.getDuration().getEndDate(),
             course_id : internship.getCourse().getId(),
             company_id : internship.getCompany().getId(),
+            lecturer_code : internship.getLecturer().getCode(),
             status : status.OPEN
         })
     }
@@ -37,6 +38,7 @@ class InternshipRepository {
             endDate : internship.getDuration().getEndDate(),
             course_id : internship.getCourse().getId(),
             company_id : internship.getCompany().getId(),
+            lecturer_code : internship.getLecturer().getCode(),
             status : internship.getStatus()
         }).where({
             id: internship.getId()
@@ -48,4 +50,5 @@ class InternshipRepository {
         }).where('id', internship_id)
     }
 }
+
 module.exports = InternshipRepository;

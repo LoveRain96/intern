@@ -50,6 +50,7 @@ registrationNotExistedPolicy.check(4,1).then(result => {
 
     }
 });*/
+/*
 let express = require('express');
 let cookieParser = require('cookie-parser');
 let session = require('cookie-session');
@@ -72,3 +73,4 @@ app.get('/', function(req, res){
 
 app.listen(3000);
 
+*/

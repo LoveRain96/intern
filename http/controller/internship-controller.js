@@ -2,11 +2,16 @@ const InternshipList = require('../../src/course/internship-list');
 
 class InternshipController {
 
-    searchByCourse(request, response, next) {
+    /*searchByCourse(request, response, next) {
         request.app.get('internship.repository').searchByCourse(request.course).then(results => {
             let internshipList = new InternshipList(results);
             response.render('internship.njk', {internshipList: internshipList});
         }).catch(next);
+    }*/
+    searchByCourse(req, res, next) {
+        req.app.get('internship.searcher').search(req.condition).then(results => {
+            res.json(results)
+        }).catch(next)
     }
     all(request, response, next) {
         request.app.get('internship.searcher').search(request.condition).then(foundInternship => {

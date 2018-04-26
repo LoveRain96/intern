@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title>REDUX</title>
+    </head>
+    <body>
+        <button onclick="window.store.dispatch({
+        type : ADD_TODO_ACTION,
+        todo : {name: 'abc', done: false}
+        })">ABC</button>
+    </body>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script></script>
+    <script src="node_modules/redux/dist/redux.js"></script>
+    <script>
+        const ADD_TODO_ACTION = "add_to_do";
+        /*function app() {
+            //name reducer word with logic
+        }*/
+        window.store = Redux.createStore(function app(state=[], action) {
+            if(action.type === ADD_TODO_ACTION) {
+                state.push(action.todo);
+                return state;
+                //return [...state, action.todo];
+            }
+            return state;
+
+        },[]);
+
+        store.subscribe(() => {
+            // work with UI
+            console.log(store.getState());
+        });
+    </script>
+</html>
+
+
+//react
+store; state  action reducer immutable

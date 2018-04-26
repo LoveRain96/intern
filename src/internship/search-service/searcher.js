@@ -28,7 +28,7 @@ class Searcher {
                 this.on('companies.id', '=', 'internships.company_id')
             })
             .leftJoin('lecturers', function () {
-                this.on('companies.lecturer_code', '=', 'lecturers.code')
+                this.on('internships.lecturer_code', '=', 'lecturers.code')
             });
         condition.describe(sqlQuery);
         return sqlQuery.then(results => {

@@ -1,6 +1,6 @@
 const Internship            = require('../internship/internship');
 const CompanyFactory        = require('../company/company-factory');
-const LecturerFactory       = require('../lecturer/lecturer-factory');
+const InternList            = require('./intern-list');
 
 class InternshipFactory {
     constructor(app) {
@@ -13,12 +13,9 @@ class InternshipFactory {
      * @return {Internship}
      */
     makeFromDB(raw,course) {
-        let company = new CompanyFactory();
-        let lecturerFactory = new  LecturerFactory();
-        let lecturer;
-        lecturer = lecturerFactory.makeFromDB(raw);
-        let internship = new Internship(company.makeFromDB(raw));
-
+        let company = new CompanyFactory().makeFromDB(raw);
+        //let internList = new InternList().getIntern(raw.id);
+        let internship = new Internship(company);
         internship.setId(raw.internship_id);
         internship.setCourse(course);
         return internship;

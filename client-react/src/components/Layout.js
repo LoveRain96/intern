@@ -1,33 +1,54 @@
 import React from 'react';
-import Header from "./Header";
-import { Link } from "react-router-dom"
-import Course from "./Course";
-import Company from "./Company";
+import {
+    Collapse,
+    Navbar,
+    NavbarToggler,
+    NavbarBrand,
+    Nav,
+    NavItem,
+    NavLink,
+    Container} from 'reactstrap';
 
-export default class Layout extends React.Component {
+export default class Example extends React.Component {
+    constructor(props) {
+        super(props);
 
-    constructor() {
-        super();
+        this.toggle = this.toggle.bind(this);
         this.state = {
-            title: "LoveRain"
-        }
+            isOpen: false
+        };
     }
-
-    changeTitle(title) {
-        this.setState({title});
+    toggle() {
+        this.setState({
+            isOpen: !this.state.isOpen
+        });
     }
-
     render() {
-        return(
+        return (
             <div>
-                <h1>HELLO LOVERAIN</h1>
-                {this.props.children}
-                <Link to="courses">Course </Link>
-                <Link to="companies"> Company</Link>
-                <Header changeTitle={this.changeTitle.bind(this)} title={this.state.title}/>
-                <Course/>
-                <Company/>
+                <Container>
+                <Navbar color="light" light expand="md">
+                    <NavbarBrand href="/">HOME</NavbarBrand>
+                    <NavbarToggler onClick={this.toggle} />
+                    <Collapse isOpen={this.state.isOpen} navbar>
+                            <Nav className="ml-auto" navbar>
+                                <NavItem>
+                                    <NavLink href='/courses'> Courses</NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink href='/companies'>Companies</NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink href='/lecturers'>Lecturers</NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink href='/interns'>Interns</NavLink>
+                                </NavItem>
+                            </Nav>
+                    </Collapse>
+                </Navbar>
+                </Container>
             </div>
-        )
+        );
     }
 }

@@ -14,6 +14,7 @@ class CourseFactory {
         contact.setPhone(raw.phone);
         contact.setEmail(raw.email);
         company.setContact(contact);
+        company.setNameManager(raw.nameManager);
         return company;
     }
 }

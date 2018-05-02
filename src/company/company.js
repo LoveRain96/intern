@@ -58,6 +58,14 @@ class Company {
         return this.contact;
     }
 
+    setNameManager(nameManager) {
+        this.nameManager = nameManager;
+    }
+
+    getNameManager() {
+        return this.nameManager;
+    }
+
 }
 
 module.exports = Company;

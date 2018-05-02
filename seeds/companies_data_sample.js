@@ -5,9 +5,9 @@ exports.seed = function(knex, Promise) {
         .then(function () {
             // Inserts seed entries
             return knex('companies').insert([
-                {id: 1, name: 'FPT', phone: '03423423',email :'jack@', address : 'HN'},
-                {id: 2, name: 'SAMSUNG', phone: '03423423',email :'jack@', address : 'HN'},
-                {id: 3, name: 'TQ', phone: '03423423',email :'jack@', address : 'HN'},
+                {id: 1, name: 'FPT', phoneManager: '03423423', emailManager :'jack@', address : 'HN', nameManager : 'Mr.Tien'},
+                {id: 2, name: 'SAMSUNG', phoneManager: '03423423', emailManager :'jack@', address : 'HN', nameManager : 'Mr.Toan'},
+                {id: 3, name: 'Sphinx', phoneManager: '03423423', emailManager :'jack@', address : 'HN', nameManager : 'Mr.Son'},
             ]);
         });
 };

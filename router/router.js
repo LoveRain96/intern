@@ -12,6 +12,7 @@ const internshipList                = require('../http/controller/internship-lis
 const checkData                     = require('../http/middleware');
 const SearchByCourse                = require('../src/internship/search-service/course-search-condition');
 const ListAllInternship             = require('../src/internship/search-service/undeleted-search-condition');
+const cors                          = require('cors');
 
 let loginController                 = new LoginController;
 let lecturerController              = new LecturerController();
@@ -22,8 +23,6 @@ let companyManagerController        = new CompanyManagerController;
 let internController                = new InternController;
 
 
-
-
 router.get('/login', function (req, res) {
     res.render('login.njk');
 });
@@ -32,16 +31,13 @@ router.get('/', function (req, res) {
    res.render('home.njk')
 });
 
-
 router.get('/search-service', (req, res) => {
     res.render('internship.njk')
 });
 
 router.get('/import/interns', internController.import);
 
-
 router.get('/import/lecturer', lecturerController.import);
-
 
 router.get('/add-company', function (req, res) {
     res.render('add-company.njk')
@@ -50,29 +46,18 @@ router.get('/add-company', function (req, res) {
 router.get('/company', (req, res) => {
     res.render('company.njk');
 });
+
 router.get('/companies', companyController.all);
+
 router.get('/detail-company/:id', companyController.get);
+
 router.get('/companies/search-basic', companyController.searchByName);
+
 router.post('/company', checkData.companyRequest, companyController.create);
+
 router.post('/company/:id', checkData.companyRequest, companyController.update);
+
 router.get('/company/:id', companyController.remove);
-
-
-router.get('/manager/add', function (request, response) {
-    response.render('addManager.njk')
-});
-router.get('/managers', companyManagerController.all);
-
-router.get('/manager/:id', companyManagerController.get);
-
-router.get('/manager/search-basic', companyManagerController.searchByName);
-
-router.post('/manager', checkData.managerRequest, companyManagerController.create);
-
-router.put('/manager/:id', checkData.managerRequest, companyManagerController.update);
-
-router.delete('/manager/:id', companyManagerController.remove);
-
 
 router.get('/course/add', function (request, response, next) {
     response.render('add-course.njk')
@@ -81,7 +66,7 @@ router.get('/course', (req, res) => {
     res.render('course.njk')
 });
 
-router.get('/courses', courseController.all);
+router.get('/courses',cors(), courseController.all);
 
 router.get('/course/:id', courseController.get);
 
@@ -92,12 +77,12 @@ router.post('/course/:id', checkData.courseRequest, courseController.update);
 router.get('/delete/course/:id', courseController.remove);
 
 
-
 const UndeletedSearch      = require('../src/internship/search-service/undeleted-search-condition');
 
 router.get('/search-service', function (req, res) {
     res.render('internship.njk')
 });
+
 router.get('/internships', (req, res, next) => {
     req.condition = new UndeletedSearch();
     next();
@@ -123,7 +108,6 @@ router.post('/course/:idCourse/internship',checkData.isCourse, internshipControl
 
 router.put('/course/:idCourse/internship/:id',checkData.isCourse, internshipController.update);
 
-
 router.delete('/course/search-service/:id', internshipController.remove);
 
 router.get('/course/search-service/confirmed/:id', internshipList.getListCONFIRMED);
@@ -133,6 +117,5 @@ router.get('/course/search-service/pending/:id', internshipList.getListPENDING);
 router.post('/registration/send', registration.registerInternShip);
 
 router.put('/registration/confirm', registration.confirm);
-
 
 module.exports = router;

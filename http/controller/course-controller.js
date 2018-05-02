@@ -1,32 +1,22 @@
 class CourseController {
-    all(request, response, next) {
-        request.app.get('course.repository').all().then(function (results) {
-            response.send(results)
-        }).catch(next);
+    async all (request, response, next) {
+         response.json(await request.app.get('course.repository').all())
     }
 
-    get(request, response, next) {
-        request.app.get('course.repository').get(request.params.id).then(course =>
-            response.render('detail-course.njk', {course : course })
-        ).catch(next);
+    async get (request, response, next) {
+         response.json(await  request.app.get('course.repository').get(request.params.id));
     }
 
-    create(request, response, next) {
-        request.app.get('course.repository').create(request.course).then(() => {
-            response.redirect('course/add')
-        })
+    async create(request, response, next) {
+        response.json(await  request.app.get('course.repository').create(request.course));
     }
 
-    update(request, response, next) {
-        request.app.get('course.repository').update(request.course).then(() => {
-            response.redirect('/course')
-        })
+    async update(request, response, next) {
+            response.json(await request.app.get('course.repository').update(request.course));
     }
 
-    remove(request, response, next) {
-        request.app.get('course.repository').remove(request.params.id).then(()=> {
-            response.redirect('/course')
-        })
+    async remove(request, response, next) {
+        response.json(await request.app.get('course.repository').remove(request.params.id));
     }
 }
 module.exports = CourseController;

@@ -16,9 +16,9 @@ class Searcher {
         let sqlQuery;
         let factory = this.factory;
         sqlQuery = this.connection
-            .select('courses.id', 'courses.name', 'courses.startDate', 'courses.endDate', 'courses.status',
-                'companies.id', 'companies.name', 'companies.phone', 'companies.email', 'companies.address',
-                'lecturers.code', 'lecturers.name', 'lecturers.gender', 'lecturers.phone', 'lecturers.email', 'lecturers.address'
+            .select('courses.id', 'courses.name as courses-name', 'courses.startDate', 'courses.endDate', 'courses.status',
+                'companies.id', 'companies.name as companies-name', 'companies.phone as companies-phone', 'companies.email as companies-email', 'companies.address as companies-address',
+                'lecturers.code', 'lecturers.name as lecturers-name', 'lecturers.gender', 'lecturers.phone as lecturers-phone', 'lecturers.email as lecturers-email', 'lecturers.address as lecturers-address'
                 ,'internships.deadline')
             .from('internships')
             .leftJoin('courses', function () {

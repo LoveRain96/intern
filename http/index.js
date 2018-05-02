@@ -6,6 +6,7 @@ const cookieParser    = require('cookie-parser');
 const bodyParser      = require('body-parser');
 const nunjucks        = require('nunjucks');
 const router          = require('../router/router');
+const cors            = require('cors')
 
 module.exports =function (app) {
 
@@ -19,6 +20,8 @@ module.exports =function (app) {
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: false }));
     app.use(cookieParser());
+    app.use(cors());
     app.use(express.static(path.join(__dirname, 'public')));
     app.use('/', router);
+
 };

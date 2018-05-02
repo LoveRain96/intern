@@ -29,7 +29,8 @@ class CompanyRepository {
             name : company.getName(),
             phone : company.getContact().getPhone(),
             email : company.getContact().getEmail(),
-            address : company.getAddress()
+            address : company.getAddress(),
+            nameManager : company.getNameManager()
         }).then(companyId => {
             company.setId(companyId);
             return company;
@@ -40,7 +41,8 @@ class CompanyRepository {
             name : company.getName(),
             phone : company.getContact().getPhone(),
             email : company.getContact().getEmail(),
-            address : company.getAddress()
+            address : company.getAddress(),
+            nameManager : company.getNameManager()
         }).where('id', company.getId())
     }
     remove(id) {

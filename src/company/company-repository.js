@@ -1,3 +1,6 @@
+
+const Company = require('./company');
+
 class CompanyRepository {
 
     constructor(connection, companyFactory) {
@@ -5,12 +8,13 @@ class CompanyRepository {
         this.companyFactory = companyFactory;
     }
 
-    searchByName(keyword) {
+    searchByKeyword(keyword) {
         return this.connection('companies').select()
             .where('name', 'like', '%' + keyword + '%')
-            .orWhere('phone', 'like', '%' + keyword + '%')
-            .orWhere('email', 'like', '%' + keyword + '%')
+            .orWhere('phoneManager', 'like', '%' + keyword + '%')
+            .orWhere('emailManager', 'like', '%' + keyword + '%')
             .orWhere('address', 'like', '%' + keyword + '%')
+            .orWhere('nameManager', 'like', '%' + keyword + '%')
             .where({
                 deleted_at : null
             })
@@ -18,7 +22,7 @@ class CompanyRepository {
     }
     get(id) {
         return this.connection('companies')
-            .where({id : id, deleted_at : null}).then(result =>this.companyFactory.makeFromDB(result[0]));
+            .where({id : id, deleted_at : null}).then(result => result.map(this.companyFactory.makeFromDB));
     }
     all() {
         return this.connection('companies')
@@ -27,8 +31,8 @@ class CompanyRepository {
     create(company) {
         return this.connection('companies').insert({
             name : company.getName(),
-            phone : company.getContact().getPhone(),
-            email : company.getContact().getEmail(),
+            phoneManager : company.getContact().getPhone(),
+            emailManager : company.getContact().getEmail(),
             address : company.getAddress(),
             nameManager : company.getNameManager()
         }).then(companyId => {
@@ -39,18 +43,18 @@ class CompanyRepository {
     update(company) {
         return this.connection('companies').update({
             name : company.getName(),
-            phone : company.getContact().getPhone(),
-            email : company.getContact().getEmail(),
+            phoneManager : company.getContact().getPhone(),
+            emailManager : company.getContact().getEmail(),
             address : company.getAddress(),
             nameManager : company.getNameManager()
-        }).where('id', company.getId())
+        }).where({id : company.getId()}).then(()=>company)
     }
     remove(id) {
         return this.connection('companies').update({
             deleted_at : new Date().toLocaleString()
         }).where({
             id: id
-        }).then(result=>result)
+        }).then(()=>id)
     }
 }
 module.exports = CompanyRepository;

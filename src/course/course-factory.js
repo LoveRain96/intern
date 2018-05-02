@@ -23,6 +23,7 @@ class CourseFactory {
     makeFromRequest(raw) {
         let duration = new Duration(raw.body.startDate, raw.body.endDate);
         let course = new Course(duration, raw.body.name);
+        course.setStatus(raw.body.status);
         course.setId(raw.params.id);
         return course;
     }

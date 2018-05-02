@@ -8,7 +8,6 @@ module.exports = {
     services : [
         require('./http'),
         require('./database'),
-        require('./src/company-manager'),
         require('./src/company'),
         require('./src/course'),
         require('./src/lecturer'),

@@ -15,7 +15,7 @@ class CourseRepository {
     get(id) {
         return this.connection('courses')
             .where({id : id, deleted_at : null})
-                .then(result=> this.courseFactory.makeFromDB(result[0]))
+                .then(result=> result.map(this.courseFactory.makeFromDB));
     }
 
     create(course) {
@@ -26,6 +26,7 @@ class CourseRepository {
             status : status.OPEN
         }).then(course_id=> {
             course.setId(course_id);
+            course.setStatus(status.OPEN);
             return course;
         })
     }
@@ -36,13 +37,13 @@ class CourseRepository {
             startDate : course.getDuration().getStartDate(),
             endDate : course.getDuration().getEndDate(),
             status : course.getStatus()
-        }).where('id', course.getId())
+        }).where('id', course.getId()).then(() => course)
     }
 
     remove(id) {
         return this.connection('courses').update({
             deleted_at : new Date().toLocaleString()
-        }).where('id', id)
+        }).where('id', id).then(() => id)
     }
 }
 module.exports = CourseRepository;

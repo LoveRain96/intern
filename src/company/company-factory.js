@@ -11,8 +11,8 @@ class CourseFactory {
         let contact = new Contact();
         company.setId(raw.id);
         company.setAddress(raw.address);
-        contact.setPhone(raw.phone);
-        contact.setEmail(raw.email);
+        contact.setPhone(raw.phoneManager);
+        contact.setEmail(raw.emailManager);
         company.setContact(contact);
         company.setNameManager(raw.nameManager);
         return company;

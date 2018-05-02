@@ -18,6 +18,7 @@ class InternshipFactory {
         let internship = new Internship(company);
         internship.setId(raw.internship_id);
         internship.setCourse(course);
+        internship.setDeadline(raw.deadline);
         return internship;
     }
 }

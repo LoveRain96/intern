@@ -6,7 +6,7 @@ const cookieParser    = require('cookie-parser');
 const bodyParser      = require('body-parser');
 const nunjucks        = require('nunjucks');
 const router          = require('../router/router');
-const cors            = require('cors')
+const cors            = require('cors');
 
 module.exports =function (app) {
 

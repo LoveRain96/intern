@@ -7,8 +7,11 @@ class CourseController {
          response.json(await  request.app.get('course.repository').get(request.params.id));
     }
 
-    async create(request, response, next) {
-        response.json(await  request.app.get('course.repository').create(request.course));
+    create(request, response, next) {
+        let repo = request.app.get('course.repository');
+        repo.create(request.course).then( course => {
+            response.send(course);
+        }).catch(next);
     }
 
     async update(request, response, next) {

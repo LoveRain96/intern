@@ -49,7 +49,7 @@ router.get('/courses',cors(), courseController.all);
 
 router.get('/course/:id', courseController.get);
 
-router.post('/course', checkData.courseRequest, courseController.create);
+router.post('/course',checkData.courseRequest, courseController.create);
 
 router.put('/course/:id', checkData.courseRequest, courseController.update);
 
@@ -65,6 +65,8 @@ router.get('/internships', (req, res, next) => {
     next();
 }, internshipController.all);
 
+
+
 //router.get('/course/:idCourse/internship',checkData.isCourse, internshipController.searchByCourse);
 
 router.get('/listInternship', function (req, res, next) {
@@ -76,6 +78,7 @@ router.get('/search-course/:id',checkData.courseRequest, function (req, res, nex
     req.condition = new SearchByCourse(req.course);
     next()
 });
+
 
 router.post('/course/:idCourse/internship',checkData.isCourse, internshipController.create);
 

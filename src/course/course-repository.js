@@ -25,7 +25,7 @@ class CourseRepository {
             endDate : course.getDuration().getEndDate(),
             status : status.OPEN
         }).then(course_id=> {
-            course.setId(course_id);
+            course.setId(course_id[0]);
             course.setStatus(status.OPEN);
             return course;
         })

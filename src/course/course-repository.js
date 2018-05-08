@@ -17,12 +17,17 @@ class CourseRepository {
             .where({id : id, deleted_at : null})
                 .then(result=> result.map(this.courseFactory.makeFromDB));
     }
+    searchByName(name) {
+        return this.connection('courses')
+            .where({deleted_at : null}).where('name', 'like', '%' + name + '%')
+                .then(result=> result.map(this.courseFactory.makeFromDB));
+    }
 
     create(course) {
         return this.connection('courses').insert({
             name : course.getName(),
-            startDate : course.getDuration().getStartDate(),
-            endDate : course.getDuration().getEndDate(),
+            startDate : course.getStartDate(),
+            endDate : course.getEndDate(),
             status : status.OPEN
         }).then(course_id=> {
             course.setId(course_id[0]);
@@ -34,8 +39,8 @@ class CourseRepository {
     update(course) {
         return this.connection('courses').update({
             name : course.getName(),
-            startDate : course.getDuration().getStartDate(),
-            endDate : course.getDuration().getEndDate(),
+            startDate : course.getStartDate(),
+            endDate : course.getEndDate(),
             status : course.getStatus()
         }).where('id', course.getId()).then(() => course)
     }

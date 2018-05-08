@@ -1,8 +1,13 @@
 class Company {
 
+    /**
+     *
+     * @param {string} name
+     */
     constructor(name) {
         this.name = name;
     }
+
     /**
      *
      * @param {int} id
@@ -18,6 +23,7 @@ class Company {
     getId() {
         return this.id;
     }
+
     /**
      *
      * @return {string}
@@ -44,24 +50,48 @@ class Company {
 
     /**
      *
-     * @param {Contact} contact
+     * @param {string} phoneManager
      */
-    setContact(contact) {
-         this.contact = contact;
+    setPhoneManager(phoneManager) {
+        this.phoneManager = phoneManager;
     }
 
     /**
      *
-     * @return {Contact}
+     * @return {string}
      */
-    getContact() {
-        return this.contact;
+    getPhoneManager() {
+        return this.phoneManager;
     }
 
+    /**
+     *
+     * @param {string} emailManager
+     */
+    setEmailManager(emailManager) {
+        this.emailManager = emailManager;
+    }
+
+    /**
+     *
+     * @return {string}
+     */
+    getEmailManager() {
+        return this.emailManager;
+    }
+
+    /**
+     *
+     * @param {string} nameManager
+     */
     setNameManager(nameManager) {
         this.nameManager = nameManager;
     }
 
+    /**
+     *
+     * @return {string}
+     */
     getNameManager() {
         return this.nameManager;
     }

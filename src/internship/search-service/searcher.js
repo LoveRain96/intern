@@ -32,7 +32,7 @@ class Searcher {
             });
         condition.describe(sqlQuery);
         return sqlQuery.then(results => {
-            return results.map(element => factory.makeFromDB(element));
+            return results.map(element => CourseFactory.makeFromDB(element));
         });
     }
 

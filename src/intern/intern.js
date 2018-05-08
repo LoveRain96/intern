@@ -5,19 +5,58 @@ class Intern {
 
     /**
      *
-     * @param {string} name
+     * @param {string} code
      */
-    setName(name) {
-        this.name = name;
+    setCode(code) {
+        this.code= code;
     }
+
+    /**
+     *
+     * @param {string}phoneParent
+     */
+    setPhoneParent(phoneParent) {
+        this.phoneParent = phoneParent
+    }
+
     /**
      *
      * @return {string}
      */
-    getCode() {
-        return this.code;
+    getPhoneParent() {
+        return this.phoneParent;
+    }
+    /**
+     *
+     * @param {string}lastName
+     */
+    setLastName(lastName) {
+        this.lastName = lastName
     }
 
+    /**
+     *
+     * @return {string}
+     */
+    getLastName() {
+        return this.lastName;
+    }
+
+    /**
+     *
+     * @param {string} firstName
+     */
+    setFirstName(firstName) {
+        this.firstName = firstName;
+    }
+
+    /**
+     *
+     * @return {string}
+     */
+    getFirstName() {
+        return this.firstName;
+    }
     /**
      *
      * @param {string} gender
@@ -37,24 +76,40 @@ class Intern {
      *
      * @return {string}
      */
-    getName() {
-        return this.name;
+    getCode() {
+        return this.code;
     }
 
     /**
      *
-     * @param {Contact} contact
+     * @param {string} phone
      */
-    setContact(contact) {
-        this.contact = contact;
+    setPhone(phone) {
+        this.phone = phone;
     }
 
     /**
      *
-     * @return {Contact}
+     * @return {string}
      */
-    getContact() {
-        return this.contact;
+    getPhone() {
+        return this.phone;
+    }
+
+    /**
+     *
+     * @param {string} email
+     */
+    setEmail(email) {
+        this.email = email
+    }
+
+    /**
+     *
+     * @return {string}
+     */
+    getEmail() {
+        return this.email;
     }
 
     /**
@@ -71,15 +126,6 @@ class Intern {
      */
     getAddress() {
         return this.address;
-    }
-    toJson() {
-        return {
-            id : this.getId(),
-            name : this.getName(),
-            phone : this.getContact().getPhone(),
-            email : this.getContact().getEmail(),
-            address : this.getAddress()
-        }
     }
 }
 

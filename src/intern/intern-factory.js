@@ -1,5 +1,4 @@
 const Intern = require('./intern');
-const Contact = require('../../src/contact/contact');
 class InternFactory {
 
     /**
@@ -8,14 +7,14 @@ class InternFactory {
      * @return {Intern}
      */
     makeFromDB(raw) {
-        let contact = new Contact();
         let intern = new Intern(raw.code);
-        intern.setName(raw.name);
+        intern.setFirstName(raw.firstName);
+        intern.setLastName(raw.lastName);
         intern.setGender(raw.gender);
-        contact.setPhone(raw.phone);
-        contact.setEmail(raw.email);
+        intern.setPhoneParent(raw.phoneParent);
+        intern.setPhone(raw.phone);
+        intern.setEmail(raw.email);
         intern.setAddress(raw.address);
-        intern.setContact(contact);
         return intern;
     }
 }

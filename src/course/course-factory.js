@@ -1,5 +1,4 @@
 const Course = require('./course');
-const Duration = require('../duration/duration');
 class CourseFactory {
 
     /**
@@ -8,8 +7,7 @@ class CourseFactory {
      * @return {Course}
      */
     makeFromDB(raw) {
-        let duration = new Duration(raw.startDate, raw.endDate);
-        let course = new Course(duration, raw.name);
+        let course = new Course(raw.startDate, raw.endDate, raw.name);
         course.setId(raw.id);
         course.setStatus(raw.status);
         return course;
@@ -21,8 +19,7 @@ class CourseFactory {
      * @return {Course}
      */
     makeFromRequest(raw) {
-        let duration = new Duration(raw.body.startDate, raw.body.endDate);
-        let course = new Course(duration, raw.body.name);
+        let course = new Course(raw.body.startDate, raw.body.endDate, raw.body.name);
         course.setStatus(raw.body.status);
         course.setId(raw.params.id);
         return course;

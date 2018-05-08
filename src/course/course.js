@@ -1,15 +1,35 @@
 class Course {
+
     /**
      *
-     * @param duration
-     * @param name
-     * @param internshipList
+     * @param {string} startDate
+     * @param {string} endDate
+     * @param {string} name
+     * @param {InternshipList} internshipList
      */
-    constructor(duration, name, internshipList=[]) {
-        this.duration   = duration;
-        this.name = name;
+    constructor(startDate, endDate, name, internshipList=[]) {
+        this.startDate      = startDate;
+        this.endDate        = endDate;
+        this.name           = name;
         this.internshipList = internshipList;
     }
+
+    /**
+     *
+     * @return {string}
+     */
+    getStartDate() {
+        return this.startDate;
+    }
+
+    /**
+     *
+     * @return {string}
+     */
+    getEndDate() {
+        return this.endDate;
+    }
+
     /**
      *
      * @return {InternshipList}
@@ -17,20 +37,13 @@ class Course {
     getInternshipList() {
         return this.internshipList;
     }
+
     /**
      *
      * @return {string}
      */
     getName() {
         return this.name;
-    }
-
-    /**
-     *
-     * @return {Duration}
-     */
-    getDuration() {
-        return this.duration;
     }
 
     /**
@@ -48,6 +61,7 @@ class Course {
     getStatus() {
         return this.status;
     }
+
     /**
      *
      * @param {int} id

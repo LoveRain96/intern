@@ -1,42 +1,22 @@
-const InternshipList = require('../../src/course/internship-list');
-
 class InternshipController {
 
-    /*searchByCourse(request, response, next) {
-        request.app.get('internship.repository').searchByCourse(request.course).then(results => {
-            let internshipList = new InternshipList(results);
-            response.render('internship.njk', {internshipList: internshipList});
-        }).catch(next);
-    }*/
-    searchByCourse(req, res, next) {
-        req.app.get('internship.searcher').search(req.condition).then(results => {
-            res.json(results)
-        }).catch(next)
+    async searchByCourse(request, response, next) {
+        response.json(await request.app.get('internship.repository').searchByCourse(request.course).catch(next))
     }
-    all(request, response, next) {
-        request.app.get('internship.searcher').search(request.condition).then(foundInternship => {
-            response.json(foundInternship);
-        }).catch(next);
+    async all(request, response, next) {
+        response.json(await request.app.get('internship.repository').all().catch(next));
     }
-    get(request, response, next) {
-        request.app.get('internship.repository').get(request.params.id).then(results => {
-            response.json(results)
-        }).catch(next);
+    async get(request, response, next) {
+        response.json(await request.app.get('internship.repository').get(request.params.id, request.course).catch(next))
     }
-    create(request, response, next) {
-        request.app.get('internship.repository').create(request.internship).then(result => {
-            response.json(result)
-        }).catch(next)
+    async create(request, response, next) {
+        response.json(await request.app.get('internship.repository').create(request.internship).catch(next))
     }
-    update(request, response, next) {
-        request.app.get('internship.repository').update(request.internship).then(() => {
-            response.json('success')
-        }).catch(next)
+    async update(request, response, next) {
+        response.json(await request.app.get('internship.repository').update(request.internship).catch(next))
     }
-    remove(request, response, next) {
-        request.app.get('internship.repository').remove(request.internship).then(() => {
-            response.json('success')
-        }).catch(next)
+    async remove(request, response, next) {
+        response.json(await request.app.get('internship.repository').remove(request.internship).catch(next))
     }
 }
 module.exports = InternshipController;

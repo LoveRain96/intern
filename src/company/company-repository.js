@@ -1,6 +1,3 @@
-
-const Company = require('./company');
-
 class CompanyRepository {
 
     constructor(connection, companyFactory) {
@@ -15,10 +12,8 @@ class CompanyRepository {
             .orWhere('emailManager', 'like', '%' + keyword + '%')
             .orWhere('address', 'like', '%' + keyword + '%')
             .orWhere('nameManager', 'like', '%' + keyword + '%')
-            .where({
-                deleted_at : null
-            })
-            .then(results =>results.map(this.companyFactory.makeFromDB));
+            .where('deleted_at' , null)
+            .then(results => results.map(this.companyFactory.makeFromDB));
     }
     get(id) {
         return this.connection('companies')
@@ -31,8 +26,8 @@ class CompanyRepository {
     create(company) {
         return this.connection('companies').insert({
             name : company.getName(),
-            phoneManager : company.getContact().getPhone(),
-            emailManager : company.getContact().getEmail(),
+            phoneManager : company.getPhoneManager(),
+            emailManager : company.getEmailManager(),
             address : company.getAddress(),
             nameManager : company.getNameManager()
         }).then(companyId => {
@@ -43,8 +38,8 @@ class CompanyRepository {
     update(company) {
         return this.connection('companies').update({
             name : company.getName(),
-            phoneManager : company.getContact().getPhone(),
-            emailManager : company.getContact().getEmail(),
+            phoneManager : company.getPhoneManager(),
+            emailManager : company.getEmailManager(),
             address : company.getAddress(),
             nameManager : company.getNameManager()
         }).where({id : company.getId()}).then(()=>company)

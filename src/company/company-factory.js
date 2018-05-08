@@ -1,5 +1,4 @@
 const Company = require('../../src/company/company');
-const Contact = require('../../src/contact/contact');
 class CourseFactory {
     /**
      *
@@ -8,13 +7,28 @@ class CourseFactory {
      */
     makeFromDB(raw) {
         let company = new Company(raw.name);
-        let contact = new Contact();
         company.setId(raw.id);
         company.setAddress(raw.address);
-        contact.setPhone(raw.phoneManager);
-        contact.setEmail(raw.emailManager);
-        company.setContact(contact);
+        company.setPhoneManager(raw.phoneManager);
+        company.setEmailManager(raw.emailManager);
         company.setNameManager(raw.nameManager);
+        return company;
+    }
+
+    /**
+     *
+     * @param rawBody
+     * @return {Company}
+     */
+    makeFromRequest(rawBody) {
+        let raw = rawBody.body;
+        let company = new Company(raw.name);
+        company.setId(raw.id);
+        company.setAddress(raw.address);
+        company.setPhoneManager(raw.phoneManager);
+        company.setEmailManager(raw.emailManager);
+        company.setNameManager(raw.nameManager);
+        company.setId(rawBody.params.id);
         return company;
     }
 }

@@ -1,19 +1,12 @@
-const InternshipList = require('../../src/internship/intern-list');
 
 exports.getListPENDING = function (request, response, next) {
-    let lecturer = request.app.get('lecturer.repository').get(request.params.id);
-    let internshipRegistrations = request.app.get('internshipRegistration.Provider').getPENDING(request.params.id);
-    Promise.all([lecturer, internshipRegistrations]).then(value => {
-        let internshipList = new InternshipList(value[1], value[0]);
-        response.json(internshipList);
-    }).catch(next)
+    request.app.get('internshipRegistration.provider').getListPENDING(request.params.id).then(result => {
+        response.json(result);
+    });
 };
 
-exports.getListCONFIRMED= function (request, response, next) {
-    let lecturer = request.app.get('lecturer.repository').get(request.params.id);
-    let internshipRegistrations = request.app.get('internshipRegistration.Provider').getCONFIRMED(request.params.id);
-    Promise.all([lecturer, internshipRegistrations]).then(value => {
-        let internshipList = new InternshipList(value[1], value[0]);
-        response.json(internshipList);
-    }).catch(next)
+exports.getListCONFIRMED = function (request, response, next) {
+    request.app.get('internshipRegistration.provider').getCONFIRMED(request.params.id).then(result => {
+        response.json(result);
+    });
 };

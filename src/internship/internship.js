@@ -8,7 +8,12 @@ class Internship {
         this.company  = company;
         this.internList = internList;
     }
-
+    setLecturer(lecturer) {
+        this.lecturer = lecturer;
+    }
+    getLecturer() {
+        return this.lecturer;
+    }
     /**
      *
      * @param deadline

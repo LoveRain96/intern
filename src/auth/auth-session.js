@@ -1,14 +1,15 @@
 class AuthSession {
-    constructor(session) {
+
+    setSession(session) {
         this.session = session;
     }
 
     login(credential){
-        this.session.credentialId = credential.getId();
+        this.session.credential = credential;
     }
 
     check() {
-        return !this.session['credentialId'];
+        return !this.session.credential;
     }
 
     isGuest() {

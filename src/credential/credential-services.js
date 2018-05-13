@@ -23,9 +23,6 @@ class CredentialServices {
 
     async getCredentialById(id) {
         let credential = this.connection('credentials').where({id : id});
-        if(!credential.length) {
-            throw new Error();
-        }
         return this.credentialFactory.makeFormDB(credential[0]);
     }
 }

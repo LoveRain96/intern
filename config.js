@@ -13,7 +13,8 @@ module.exports = {
         require('./src/lecturer'),
         require('./src/internship'),
         require('./src/internship-registration'),
-
+        require('./src/auth'),
+        require('./router'),
     ],
 
     database : {

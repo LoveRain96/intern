@@ -7,13 +7,24 @@ const CompanyController             = require('../http/controller/company-contro
 const CourseController              = require('../http/controller/course-controller');
 const InternshipController          = require('../http/controller/internship-controller');
 const internshipList                = require('../http/controller/internship-list-controller');
+const LoginController               = require('../http/controller/auth-controller/login-controller');
+
+/* middleware */
 const checkData                     = require('../http/middleware');
+//login middleware
+const loginMiddleware               = require('../http/middleware/auth-controller/login-middleware');
+const notRequireLogin               = require('../http/middleware/auth-controller/not-require-login');
+const requireLogin                  = require('../http/middleware/auth-controller/require-login');
+
 
 let lecturerController              = new LecturerController();
 let internshipController            = new InternshipController();
 let courseController                = new CourseController();
-let companyController               = new CompanyController;
-let internController                = new InternController;
+let companyController               = new CompanyController();
+let internController                = new InternController();
+let loginController                 = new LoginController();
+
+
 
 
 router.get('/import/interns', internController.import);
@@ -81,4 +92,18 @@ router.post('/registration/send', registration.registerInternShip);
 
 router.put('/registration/confirm', registration.confirm);
 
+/*
+    Login
+ */
+router.post('/login', loginMiddleware, requireLogin, loginController.login);
+
+router.get('/home',function(req,res){
+    res.json({home : 'my home after login'})
+});
+
+router.get('/loginView',notRequireLogin,function(req,res) {
+    res.json({view: " login view"});
+});
+
 module.exports = router;
+

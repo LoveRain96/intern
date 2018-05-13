@@ -2,7 +2,7 @@ import React from "react";
 import {Container, Table} from 'reactstrap'
 import axios from  'axios'
 
-export  default class Company extends React.Component{
+export default class Company extends React.Component{
     state = {
         companies : []
     };
